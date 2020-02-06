@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,8 +21,16 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public void insert(TbUser tbUser) {
-        tbUserDao.insert(tbUser);
+    public void save(TbUser tbUser) {
+        tbUser.setUpdated(new Date());
+        if (tbUser.getId() == null) {
+            tbUser.setPassword(DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes()));
+            tbUser.setCreated(new Date());
+            tbUserDao.insert(tbUser);
+        } else {
+            tbUserDao.update(tbUser);
+        }
+
     }
 
     @Override
@@ -54,5 +63,9 @@ public class TbUserServiceImpl implements TbUserService {
             }
         }
         return null;
+    }
+
+    private void checkTbUser(TbUser tbUser) {
+
     }
 }

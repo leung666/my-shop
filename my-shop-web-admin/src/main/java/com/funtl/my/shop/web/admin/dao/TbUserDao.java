@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface TbUserDao {
-    public List<TbUser> selectAll();
+    List<TbUser> selectAll();
 
     void insert(TbUser tbUser);
 

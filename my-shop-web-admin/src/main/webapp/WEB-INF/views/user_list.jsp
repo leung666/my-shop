@@ -29,10 +29,21 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">用户列表</h3>
+                            <div class="row" style="padding-left: 15px; padding-top: 10px">
+                                <a href="/user/form" type="button" class="btn btn-sm btn-default"><i
+                                        class="fa fa-plus"> 新增</i></a>&nbsp;
+                                <a href="#" type="button" class="btn btn-sm btn-default"><i
+                                        class="fa fa-trash"> 删除</i></a>&nbsp;
+                                <a href="#" type="button" class="btn btn-sm btn-default"><i
+                                        class="fa fa-download"> 导入</i></a>&nbsp;
+                                <a href="#" type="button" class="btn btn-sm btn-default"><i
+                                        class="fa fa-upload"> 导出</i></a>
+                            </div>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control pull-right"
                                            placeholder="搜索">
+
 
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
@@ -50,6 +61,7 @@
                                     <th>手机号</th>
                                     <th>邮箱</th>
                                     <th>更新时间</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +71,16 @@
                                         <td>${tbUsers.username}</td>
                                         <td>${tbUsers.phone}</td>
                                         <td>${tbUsers.email}</td>
-                                        <td>${tbUsers.updated}</td>
+                                        <td><fmt:formatDate value="${tbUsers.updated}"
+                                                            pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                        <td>
+                                            <a href="#" type="button" class="btn btn-sm btn-default"><i
+                                                    class="fa fa-search"> 查看</i></a>
+                                            <a href="#" type="button" class="btn btn-sm btn-primary"><i
+                                                    class="fa fa-edit">编辑</i></a>
+                                            <a href="#" type="button" class="btn btn-sm btn-danger"><i
+                                                    class="fa fa-trash">删除</i></a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

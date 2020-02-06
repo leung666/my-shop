@@ -7,7 +7,7 @@ import java.util.List;
 public interface TbUserService {
     List<TbUser> selectAll();
 
-    void insert(TbUser tbUser);
+    void save(TbUser tbUser);
 
     void delete(Long id);
 
