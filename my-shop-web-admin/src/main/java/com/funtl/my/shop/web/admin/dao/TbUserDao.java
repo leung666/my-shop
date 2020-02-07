@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface TbUserDao {
-    public List<TbUser> selectAll();
+    List<TbUser> selectAll();
 
     void insert(TbUser tbUser);
 
@@ -20,4 +20,6 @@ public interface TbUserDao {
     List<TbUser> selectByName(String username);
 
     TbUser getByEmail(String email);
+
+    List<TbUser> search(TbUser tbUser);
 }
