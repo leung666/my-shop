@@ -7,6 +7,10 @@
 
 <!-- jQuery 3 -->
 <script src="../../static/assets/bower_components/jquery/dist/jquery.min.js"></script>
+<%--jQuery Validation Plugin - v1.14.0--%>
+<script src="../../static/assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="../../static/assets/plugins/jquery-validation/js/additional-methods.min.js"></script>
+<script src="../../static/assets/plugins/jquery-validation/js/localization/messages_zh.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../../static/assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -21,3 +25,8 @@
 <script src="../../static/assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../static/assets/js/adminlte.min.js"></script>
+
+<%--app--%>
+<script src="../../static/assets/app/validate.js"></script>
+<script src="../../static/assets/app/app.js"></script>
+<script src="../../static/assets/plugins/iCheck/icheck.min.js"></script>

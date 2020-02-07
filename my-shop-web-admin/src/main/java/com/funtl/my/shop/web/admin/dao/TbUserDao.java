@@ -20,4 +20,6 @@ public interface TbUserDao {
     List<TbUser> selectByName(String username);
 
     TbUser getByEmail(String email);
+
+    List<TbUser> search(TbUser tbUser);
 }
