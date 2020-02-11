@@ -1,24 +1,13 @@
 package com.funtl.my.shop.domain;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.funtl.my.shop.commons.persistence.BaseEntity;
 
-public class TbUser implements Serializable {
-    private Long id;
+public class TbUser extends BaseEntity {
     private String username;
     private String password;
     private String phone;
     private String email;
-    private Date created;
-    private Date updated;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -28,6 +17,7 @@ public class TbUser implements Serializable {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -52,19 +42,4 @@ public class TbUser implements Serializable {
         this.email = email;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 }

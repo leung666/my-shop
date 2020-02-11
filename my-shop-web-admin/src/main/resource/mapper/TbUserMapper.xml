@@ -60,35 +60,50 @@
       updated = #{updated}
     WHERE id = #{id}
 </update>
-    <select id="selectByName" resultType="TbUser">
-        SELECT
-        <include refid="tbUserColumns"/>
-        FROM
-        tb_user AS a
-        WHERE
-        a.username LIKE CONCAT ('%', #{username}, '%')
-    </select>
     <select id="getByEmail" resultType="TbUser">
         SELECT
         <include refid="tbUserColumns"/>
         FROM tb_user AS a
         WHERE a.email = #{email}
     </select>
-    <select id="search" resultType="TbUser">
+    <delete id="deleteMulti">
+        DELETE FROM tb_user
+        WHERE id IN
+        <foreach collection="array" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="page" resultType="TbUser" parameterType="java.util.Map">
         SELECT
         <include refid="tbUserColumns"/>
         FROM
         tb_user AS a
         <where>
-            <if test="username != null and username != ''">
-                AND a.username LIKE CONCAT ('%', #{username}, '%')
+            <if test="tbUser.username != null and tbUser.username != ''" >
+                AND a.username LIKE CONCAT ('%', #{tbUser.username}, '%')
             </if>
-            <if test="phone != null and phone != ''">
-                AND a.phone LIKE CONCAT ('%', #{phone}, '%')
+            <if test="tbUser.phone != null and tbUser.phone != ''" >
+                AND a.phone LIKE CONCAT ('%', #{tbUser.phone}, '%')
             </if>
-            <if test="email != null and email != ''">
-                AND a.email LIKE CONCAT ('%', #{email}, '%')
+            <if test="tbUser.email != null and tbUser.email != ''" >
+                AND a.email LIKE CONCAT ('%', #{tbUser.email}, '%')
             </if>
         </where>
+        ORDER BY a.updated DESC
+        LIMIT #{start},#{length}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_user AS a
+        <where>
+        <if test="username != null and username != ''" >
+            AND a.username LIKE CONCAT ('%', #{username}, '%')
+        </if>
+        <if test="phone != null and phone != ''" >
+            AND a.phone LIKE CONCAT ('%', #{phone}, '%')
+        </if>
+        <if test="email != null and email != ''" >
+            AND a.email LIKE CONCAT ('%', #{email}, '%')
+        </if>
+    </where>
     </select>
 </mapper>

@@ -4,6 +4,7 @@ import com.funtl.my.shop.domain.TbUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface TbUserDao {
@@ -17,9 +18,11 @@ public interface TbUserDao {
 
     void update(TbUser tbUser);
 
-    List<TbUser> selectByName(String username);
-
     TbUser getByEmail(String email);
 
-    List<TbUser> search(TbUser tbUser);
+    void deleteMulti(String[] ids);
+
+    List<TbUser> page(Map<String, Object> params);
+
+    int count(TbUser tbUser);
 }

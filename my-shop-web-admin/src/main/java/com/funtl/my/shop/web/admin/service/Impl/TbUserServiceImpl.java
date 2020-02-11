@@ -1,6 +1,7 @@
 package com.funtl.my.shop.web.admin.service.Impl;
 
 import com.funtl.my.shop.commons.dto.BaseResult;
+import com.funtl.my.shop.commons.dto.PageInfo;
 import com.funtl.my.shop.commons.utils.RegexpUtils;
 import com.funtl.my.shop.domain.TbUser;
 import com.funtl.my.shop.web.admin.dao.TbUserDao;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TbUserServiceImpl implements TbUserService {
@@ -56,11 +59,6 @@ public class TbUserServiceImpl implements TbUserService {
     }
 
     @Override
-    public List<TbUser> selectByName(String username) {
-        return tbUserDao.selectByName(username);
-    }
-
-    @Override
     public TbUser login(String email, String password) {
         TbUser tbUser = tbUserDao.getByEmail(email);
         if (tbUser != null) {
@@ -72,9 +70,28 @@ public class TbUserServiceImpl implements TbUserService {
         return null;
     }
 
+    public void deleteMulti(String[] ids) {
+        tbUserDao.deleteMulti(ids);
+    }
+
     @Override
-    public List<TbUser> search(TbUser tbUser) {
-        return tbUserDao.search(tbUser);
+    public PageInfo<TbUser> page(int start, int length, int draw, TbUser tbUser) {
+        int count = tbUserDao.count(tbUser);
+        Map<String, Object> params = new HashMap<>();
+        params.put("start", start);
+        params.put("length", length);
+        params.put("tbUser", tbUser);
+        PageInfo<TbUser> pageInfo = new PageInfo<>();
+        pageInfo.setDraw(draw);
+        pageInfo.setRecordsTotal(count);
+        pageInfo.setRecordsFiltered(count);
+        pageInfo.setData(tbUserDao.page(params));
+        return pageInfo;
+    }
+
+    @Override
+    public int count(TbUser tbUser) {
+        return tbUserDao.count(tbUser);
     }
 
     private BaseResult checkTbUser(TbUser tbUser) {

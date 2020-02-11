@@ -34,7 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
         // 如果请求来自登录页
-        if (modelAndView.getViewName().endsWith("login")) {
+        if (modelAndView != null && modelAndView.getViewName() != null && modelAndView.getViewName().endsWith("login")) {
             // 则直接重定向到首页不再显示登录页
             httpServletResponse.sendRedirect("/main");
         }

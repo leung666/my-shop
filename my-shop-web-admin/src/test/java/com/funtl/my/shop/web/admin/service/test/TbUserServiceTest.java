@@ -59,14 +59,6 @@ public class TbUserServiceTest {
     }
 
     @Test
-    public void testSelectByName() {
-        List<TbUser> tbUsers = tbUserService.selectByName("uni");
-        for (TbUser tbUser : tbUsers) {
-            System.out.println(tbUser.getUsername());
-        }
-    }
-
-    @Test
     public void testMD5() {
         System.out.println(DigestUtils.md5DigestAsHex("123".getBytes()));
     }
